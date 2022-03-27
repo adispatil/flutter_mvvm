@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_demo/presentation/resources/strings_manager.dart';
 import 'package:mvvm_demo/presentation/screens/login/login.dart';
 import 'package:mvvm_demo/presentation/screens/main_view/main_view.dart';
-import 'package:mvvm_demo/presentation/screens/onboarding/onboarding.dart';
+import 'package:mvvm_demo/presentation/screens/onboarding/onboarding_view.dart';
 import 'package:mvvm_demo/presentation/screens/registration/registration.dart';
 import 'package:mvvm_demo/presentation/screens/splash/splash_screen.dart';
 import 'package:mvvm_demo/presentation/screens/store_details/store_details.dart';
