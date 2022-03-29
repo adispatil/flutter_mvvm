@@ -1,14 +1,12 @@
 abstract class BaseViewModel extends BaseViewModelInputs
-    with BaseViewModelIOutputs {
-  // shared variables and functions that will be used through any view model
+    with BaseViewModelOutputs {
+  // DECLARE ALL SHARED VARIABLES & FUNCTIONS THAT WILL BE USED THROUGH ANY VIEW MODEL
 
 }
 
 abstract class BaseViewModelInputs {
-  void start(); // will be called while init. of view model
-  void dispose(); // will be called when view model dies.
+  void start(); // WILL BE CALLED WHILE INITIALIZATION OF VIEW.
+  void dispose(); // WILL BE CALLED WHEN VIEW MODEL DIES.
 }
 
-abstract class BaseViewModelIOutputs {}
-
-
+abstract class BaseViewModelOutputs {}
