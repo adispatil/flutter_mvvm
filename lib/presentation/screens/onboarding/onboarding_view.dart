@@ -105,9 +105,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   Widget _getProperCircle(int index, int currentIndex) {
     if (index == currentIndex) {
-      return SvgPicture.asset(ImageAssets.icHollowCircle); // selected slider
+      return SvgPicture.asset(ImageAssets.icSolidCircle); // selected slider
     } else {
-      return SvgPicture.asset(ImageAssets.icSolidCircle); // unselected slider
+      return SvgPicture.asset(ImageAssets.icHollowCircle); // unselected slider
     }
   }
 

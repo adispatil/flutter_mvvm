@@ -29,9 +29,11 @@ class OnBoardingViewModel extends BaseViewModel
 
   @override
   int goToNext() {
-    int nextIndex = _currentIndex++;
+    int nextIndex = _currentIndex + 1;
     if (nextIndex >= _list.length) {
       _currentIndex = 0; // infinite loop to go to the length of slider
+    } else {
+      _currentIndex = nextIndex;
     }
     _postDataToView();
     return _currentIndex;
@@ -39,10 +41,12 @@ class OnBoardingViewModel extends BaseViewModel
 
   @override
   int goToPrevious() {
-    int previousIndex = _currentIndex--;
+    int previousIndex = _currentIndex - 1;
     if (previousIndex == -1) {
       _currentIndex =
           _list.length - 1; // infinite loop to go to the length of slider
+    } else {
+      _currentIndex = previousIndex;
     }
     _postDataToView();
     return _currentIndex;
