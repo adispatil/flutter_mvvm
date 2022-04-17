@@ -5,6 +5,8 @@ import 'package:mvvm_demo/data/network/failure_response.dart';
 import 'package:mvvm_demo/domain/model/onboarding/model.dart';
 import 'package:mvvm_demo/domain/usecases/login_usecase.dart';
 import 'package:mvvm_demo/presentation/base/base_view_model.dart';
+import 'package:mvvm_demo/presentation/common/state_renderer/state_renderer.dart';
+import 'package:mvvm_demo/presentation/common/state_renderer/state_renderer_impl.dart';
 
 import '../../common/freezed_data_classes.dart';
 
@@ -16,6 +18,8 @@ class LoginViewModel extends BaseViewModel
       StreamController<String>.broadcast();
   final StreamController _isAllInputsValidStreamController =
       StreamController<void>.broadcast();
+  final StreamController isUserLoggedInSuccessfullyStreamController =
+      StreamController<bool>();
 
   var loginObject = LoginObject("", "");
   final LoginUseCase _loginUseCase;
@@ -27,10 +31,14 @@ class LoginViewModel extends BaseViewModel
     _userNameStreamController.close();
     _passwordStreamController.close();
     _isAllInputsValidStreamController.close();
+    isUserLoggedInSuccessfullyStreamController.close();
   }
 
   @override
-  void start() {}
+  void start() {
+    // view tells state renderer, please show the content of the screen
+    inputState.add(ContentState());
+  }
 
   /// input stream controllers
   @override
@@ -44,20 +52,34 @@ class LoginViewModel extends BaseViewModel
 
   @override
   loginButtonPress() async {
+    _showLoadingProgress();
     (await _loginUseCase.execute(LoginUseCaseInput(
             email: loginObject.userName,
             password: loginObject.password,
             phoneNumber: '9021939021')))
-        .fold((failure) => _loginFailure(failure),
-            (success) => _loginSuccess(success));
+        .fold((failure) => _handleLoginFailure(failure),
+            (success) => _handleLoginSuccess(success));
   }
 
-  void _loginFailure(FailureResponse failure) {
-    print(failure.message);
+  /// show loading progress dialog
+  void _showLoadingProgress() {
+    inputState.add(
+        LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
   }
 
-  void _loginSuccess(Authentication success) {
-    print(success.data?.fullName);
+  /// handle login failed response
+  void _handleLoginFailure(FailureResponse failure) {
+    inputState
+        .add(ErrorState(StateRendererType.POPUP_ERROR_STATE, failure.message));
+  }
+
+  /// handle login success response
+  void _handleLoginSuccess(Authentication success) {
+    // show success dialog
+    // inputState.add(SuccessState(
+    //     StateRendererType.POPUP_SUCCESS_STATE, 'Login Successful'));
+
+    isUserLoggedInSuccessfullyStreamController.add(true);
   }
 
   /// output stream controllers
@@ -108,6 +130,7 @@ class LoginViewModel extends BaseViewModel
         _isUserNameValid(loginObject.userName);
   }
 
+  /// validate all user inputs
   void _validate() {
     inputIsAllValid.add(null);
   }

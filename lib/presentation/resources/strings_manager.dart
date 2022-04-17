@@ -18,4 +18,7 @@ class AppStrings {
   static const String notAMember = 'Not a member? SignUp';
   static const String wrongUserName = 'Wrong user name';
   static const String wrongPassword = 'Wrong password';
+  static const String loading = 'Loading...';
+  static const String retryAgain = 'Retry Again';
+  static const String ok = 'Ok';
 }
