@@ -11,5 +11,11 @@ class AppStrings {
   static const String onBoardingSubTitle4 = 'MVVM Demo is an awesome flutter application using clean architecture developed by Aditya #4';
 
   static const String skip = 'Skip';
-
+  static const String userName = 'Username';
+  static const String password = 'Password';
+  static const String login = 'Login';
+  static const String forgetPassword = 'Forget Password';
+  static const String notAMember = 'Not a member? SignUp';
+  static const String wrongUserName = 'Wrong user name';
+  static const String wrongPassword = 'Wrong password';
 }

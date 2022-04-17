@@ -7,7 +7,8 @@ import 'package:mvvm_demo/presentation/resources/strings_manager.dart';
 import 'package:mvvm_demo/presentation/resources/values_manager.dart';
 import 'package:mvvm_demo/presentation/screens/onboarding/onboarding_viewmodel.dart';
 
-import '../../../domain/onboarding/model.dart';
+import '../../../domain/model/onboarding/model.dart';
+import '../../resources/routes_manager.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({Key? key}) : super(key: key);
@@ -23,6 +24,10 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   _bind() {
     _viewModel.start();
+  }
+
+  _navigateToLoginScreen() {
+    Navigator.pushReplacementNamed(context, Routes.loginRoute);
   }
 
   @override
@@ -79,14 +84,13 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _navigateToLoginScreen();
+                  },
                   child: Text(
                     AppStrings.skip,
                     textAlign: TextAlign.end,
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .subtitle2,
+                    style: Theme.of(context).textTheme.subtitle2,
                   ),
                 ),
               ),
@@ -111,12 +115,10 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     }
   }
 
-
   Widget _getBottomSheetWidget(SliderViewObject sliderViewObject) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-
         /// Left arrow
         Padding(
           padding: const EdgeInsets.all(AppPaddings.p14),
@@ -124,8 +126,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             onTap: () {
               // go to previous slide
               _pageController.animateToPage(_viewModel.goToPrevious(),
-                  duration: const Duration(
-                      milliseconds: DurationConstants.d300),
+                  duration:
+                      const Duration(milliseconds: DurationConstants.d300),
                   curve: Curves.bounceInOut);
             },
             child: SizedBox(
@@ -157,8 +159,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             onTap: () {
               // get next slide
               _pageController.animateToPage(_viewModel.goToNext(),
-                  duration: const Duration(
-                      milliseconds: DurationConstants.d300),
+                  duration:
+                      const Duration(milliseconds: DurationConstants.d300),
                   curve: Curves.bounceInOut);
             },
             child: SizedBox(

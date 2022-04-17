@@ -11,7 +11,7 @@ extension NonNullString on String? {
   }
 }
 
-// extensions on int
+/// extensions on int
 extension NonNullInteger on int? {
   int orZero() {
     if (this == null) {
@@ -19,5 +19,23 @@ extension NonNullInteger on int? {
     } else {
       return this!;
     }
+  }
+}
+
+/// email validate extension
+extension EmailValidator on String {
+  bool isValidEmail() {
+    return RegExp(
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+        .hasMatch(this);
+  }
+}
+
+/// password validate extension
+extension PasswordValidator on String {
+  bool isValidPassword() {
+    return RegExp(
+            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+        .hasMatch(this);
   }
 }

@@ -1,8 +1,6 @@
 import 'dart:async';
-
-import 'package:mvvm_demo/domain/onboarding/model.dart';
-import 'package:mvvm_demo/presentation/base/baseviewmodel.dart';
-
+import 'package:mvvm_demo/presentation/base/base_view_model.dart';
+import '../../../domain/model/onboarding/model.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/strings_manager.dart';
 
@@ -82,6 +80,11 @@ class OnBoardingViewModel extends BaseViewModel
     inputSliderViewObject.add(
         SliderViewObject(_list[_currentIndex], _list.length, _currentIndex));
   }
+
+  @override
+  void onSkipPressed() {
+
+  }
 }
 
 // input means the orders that our view model will receive from our view
@@ -94,7 +97,9 @@ abstract class OnBoardingViewModelInputs {
 
   void onPageChanged(int index);
 
-  // this is the way to add the data  to the stream.. stream input
+  void onSkipPressed();
+
+  // this is the way to add the data to the stream.. stream input
   Sink get inputSliderViewObject;
 }
 

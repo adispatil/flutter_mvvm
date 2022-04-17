@@ -7,12 +7,12 @@ import 'values_manager.dart';
 
 ThemeData getApplicationTheme() {
   return ThemeData(
-    // main colors of the app
+    // MAIN COLOUR OF THE APP
     primaryColor: ColorManager.primary,
     primaryColorLight: ColorManager.primaryOpacity70,
     primaryColorDark: ColorManager.darkPrimary,
     disabledColor:
-        ColorManager.grey1, // will be used in in-case of disabled button
+        ColorManager.grey1, // WILL BE USED IN-CASE OF DISABLED BUTTON
 
     accentColor: ColorManager.grey,
     // card view theme

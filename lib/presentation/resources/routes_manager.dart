@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_demo/app/dependency_injection.dart';
 import 'package:mvvm_demo/presentation/resources/strings_manager.dart';
 import 'package:mvvm_demo/presentation/screens/login/login.dart';
 import 'package:mvvm_demo/presentation/screens/main_view/main_view.dart';
@@ -17,14 +18,17 @@ class Routes {
 }
 
 class RouteGenerator {
-  static Route<dynamic> getRoute(RouteSettings routeSettings) {
+  static Route getRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
       case Routes.loginRoute:
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        {
+          initLoginModule();
+          return MaterialPageRoute(builder: (_) => const LoginView());
+        }
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) => const RegistrationView());
       case Routes.mainRoute:

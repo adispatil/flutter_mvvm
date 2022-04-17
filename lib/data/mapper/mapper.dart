@@ -2,7 +2,8 @@
 
 import 'package:mvvm_demo/app/extensions.dart';
 import 'package:mvvm_demo/data/responses/authentication/login_response.dart';
-import 'package:mvvm_demo/domain/onboarding/model.dart';
+
+import '../../domain/model/onboarding/model.dart';
 
 const EMPTY = '';
 const ZERO = 0;
